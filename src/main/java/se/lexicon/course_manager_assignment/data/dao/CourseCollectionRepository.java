@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 
 
 public class CourseCollectionRepository implements CourseDao{
@@ -46,7 +47,7 @@ public class CourseCollectionRepository implements CourseDao{
         Collection<Course> coursesToAdd = new ArrayList<Course>();
         for(Course theCourse : courses){
             if(theCourse.getCourseName().contains(name)){
-                coursesToAdd.add(theCourse)
+                coursesToAdd.add(theCourse);
             }
         }
         return coursesToAdd;
@@ -57,7 +58,7 @@ public class CourseCollectionRepository implements CourseDao{
         Collection<Course> coursesToAdd = new ArrayList<Course>();
         for(Course theCourse : courses){
             if(theCourse.getStartDate().isBefore(end)){
-                coursesToAdd.add(theCourse)
+                coursesToAdd.add(theCourse);
             }
         }
         return coursesToAdd;
@@ -65,21 +66,40 @@ public class CourseCollectionRepository implements CourseDao{
 
     @Override
     public Collection<Course> findByDateAfter(LocalDate start) {
-        return null;
+        Collection<Course> coursesToAdd = new ArrayList<Course>();
+        for(Course theCourse : courses){
+            if(theCourse.getStartDate().isAfter(start)){
+                coursesToAdd.add(theCourse);
+            }
+        }
+        return coursesToAdd;
     }
 
     @Override
     public Collection<Course> findAll() {
-        return null;
+        return courses;
     }
 
     @Override
     public Collection<Course> findByStudentId(int studentId) {
-        return null;
+        Collection<Course> coursesToAdd = new ArrayList<Course>();
+        for(Course theCourse : courses){
+            if(theCourse.getCourseName().contains(name)){
+                coursesToAdd.add(theCourse);
+            }
+        }
+        return coursesToAdd;
     }
 
     @Override
     public boolean removeCourse(Course course) {
+        Iterator courseIterator = courses.iterator();
+        while(courseIterator.hasNext()){
+            if(courseIterator.next().equals(course)){
+                courseIterator.remove();
+                return true;
+            }
+        }
         return false;
     }
 
