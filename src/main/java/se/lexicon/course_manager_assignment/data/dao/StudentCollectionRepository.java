@@ -7,6 +7,7 @@ import se.lexicon.course_manager_assignment.model.Student;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 
 
 public class StudentCollectionRepository implements StudentDao {
@@ -50,16 +51,28 @@ public class StudentCollectionRepository implements StudentDao {
 
     @Override
     public Student findById(int id) {
+        for(Student s : students){
+            if(s.getId() == id){
+                return s;
+            }
+        }
         return null;
     }
 
     @Override
     public Collection<Student> findAll() {
-        return null;
+        return students;
     }
 
     @Override
     public boolean removeStudent(Student student) {
+        Iterator studIterator = this.students.iterator();
+        while(studIterator.hasNext()){
+            if(studIterator.next().equals(student)){
+                studIterator.remove();
+                return true;
+            }
+        }
         return false;
     }
 
