@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.Objects;
 
 public class Course {
-    private int id
+    private int id;
     private String courseName;
     private LocalDate startDate;
     private int weekDuration;
@@ -94,7 +94,7 @@ public class Course {
                 return true;
             }
         }
-
+        return false;
     }
 
 

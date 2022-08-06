@@ -1,1 +1,16 @@
-[]
+[ {
+  "id" : 0,
+  "name" : "Jonas Eira",
+  "email" : "jonas.eira@gmail.com",
+  "address" : "Lindås västregård 10"
+}, {
+  "id" : 0,
+  "name" : "Kalle anka",
+  "email" : "Kalle.anka@anka.se",
+  "address" : "Quarls väg 13"
+}, {
+  "id" : 0,
+  "name" : "Jonas Eiran",
+  "email" : "jonas.eira2@gmail.com",
+  "address" : "Lindås västregård 10"
+} ]

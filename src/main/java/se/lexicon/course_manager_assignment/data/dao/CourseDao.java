@@ -22,4 +22,5 @@ public interface CourseDao {
     boolean removeCourse(Course course);
     void clear();
 
+    Course update(String courseName, LocalDate startDate, Integer weekDuration);
 }

@@ -8,6 +8,7 @@ import se.lexicon.course_manager_assignment.data.service.converter.Converters;
 import se.lexicon.course_manager_assignment.dto.forms.CreateCourseForm;
 import se.lexicon.course_manager_assignment.dto.forms.UpdateCourseForm;
 import se.lexicon.course_manager_assignment.dto.views.CourseView;
+import se.lexicon.course_manager_assignment.model.Course;
 
 
 import java.time.LocalDate;
@@ -29,12 +30,14 @@ public class CourseManager implements CourseService {
 
     @Override
     public CourseView create(CreateCourseForm form) {
-        return null;
+        Course co = this.courseDao.createCourse(form.getCourseName(), form.getStartDate(), form.getWeekDuration());
+        return this.converters.courseToCourseView(co);
     }
 
     @Override
     public CourseView update(UpdateCourseForm form) {
-        return null;
+        Course co = this.courseDao.update(form.getCourseName(), form.getStartDate(), form.getWeekDuration());
+        return this.converters.courseToCourseView(co);
     }
 
     @Override

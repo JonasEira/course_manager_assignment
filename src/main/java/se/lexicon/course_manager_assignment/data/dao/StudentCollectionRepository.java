@@ -80,4 +80,22 @@ public class StudentCollectionRepository implements StudentDao {
     public void clear() {
         this.students = new HashSet<>();
     }
+
+    @Override
+    public void createStudent(Student tmp) {
+        students.add(tmp);
+    }
+
+    @Override
+    public Student update(String name, String email, String address) {
+        Student student = findByEmailIgnoreCase(email);
+
+        if (student != null){
+            student.setName(name);
+            student.setEmail(email);
+            student.setAddress(address);
+        }
+
+        return student;
+    }
 }

@@ -84,7 +84,7 @@ public class CourseCollectionRepository implements CourseDao{
     public Collection<Course> findByStudentId(int studentId) {
         Collection<Course> coursesToAdd = new ArrayList<Course>();
         for(Course theCourse : courses){
-            if(theCourse.getCourseName().contains(name)){
+            if(theCourse.getId() == studentId){
                 coursesToAdd.add(theCourse);
             }
         }
@@ -106,5 +106,25 @@ public class CourseCollectionRepository implements CourseDao{
     @Override
     public void clear() {
         this.courses = new HashSet<>();
+    }
+
+    @Override
+    public Course update(String courseName, LocalDate startDate, Integer weekDuration) {
+        Collection<Course> tmp = findByNameContains(courseName);
+        Course chosenCourse = null;
+        if(tmp.size() > 1){
+            chosenCourse = new Course();
+            for(Course c : tmp){
+                if(c.getStartDate().isBefore(chosenCourse.getStartDate())){
+                    chosenCourse = c;
+                }
+            }
+        }
+        if(chosenCourse != null){
+            chosenCourse.setCourseName(courseName);
+            chosenCourse.setStartDate(startDate);
+            chosenCourse.setWeekDuration(weekDuration);
+        }
+        return chosenCourse;
     }
 }

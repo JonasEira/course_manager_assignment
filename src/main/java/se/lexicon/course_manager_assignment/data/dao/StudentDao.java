@@ -16,4 +16,7 @@ public interface StudentDao {
     boolean removeStudent(Student student);
     void clear();
 
+    void createStudent(Student tmp);
+
+    Student update(String name, String email, String address);
 }
