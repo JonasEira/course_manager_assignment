@@ -11,6 +11,7 @@ public class Student {
     private String address;
 
     public Student(){
+        this.id = StudentSequencer.nextStudentId();
     }
 
     public Student(int id){
